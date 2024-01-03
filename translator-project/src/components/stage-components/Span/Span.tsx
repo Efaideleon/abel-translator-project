@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
 import "./styles/SpanStyle.css"
-import useGetBreaklineBoolById from '../../../hooks/useGetBreakline'
+import useGetBreaklineFlagForSpan from '../../../hooks/useGetBreakline'
 
-type SpanProps = {
+interface SpanProps {
     word: string
     spanWidthSum: React.MutableRefObject<number>
     id: number
@@ -10,7 +10,7 @@ type SpanProps = {
 
 export default function Span({ word, spanWidthSum, id }: SpanProps) {
     const spanRef = useRef(null)
-    const breakline = useGetBreaklineBoolById(spanRef, spanWidthSum, id)
+    const breakline = useGetBreaklineFlagForSpan(spanRef, spanWidthSum, id)
 
     return (
         <span role={'span'}>

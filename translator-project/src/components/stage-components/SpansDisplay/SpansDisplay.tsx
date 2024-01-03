@@ -2,7 +2,7 @@ import "./styles/SpansDisplayStyle.css"
 import Span from "../Span/Span"
 import { useRef } from "react"
 
-type SpansDisplayProps = {
+interface SpansDisplayProps {
     words: string[]
 }
 
