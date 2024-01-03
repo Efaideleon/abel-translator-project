@@ -2,6 +2,7 @@ import Blurr from "../Blurr/Blurr"
 import "./styles/PrompterStyle.css"
 import SpansDisplay from "../SpansDisplay/SpansDisplay"
 import ErrorBoundary from "../../error-boundary/ErrorBoundary.tsx";
+import TextScroller from "../TextScroller/TextScroller.tsx";
 
 interface PrompterProps {
     words: string[]
@@ -13,7 +14,9 @@ export default function Prompter({ words }: PrompterProps) {
             <div className="prompter-blur">
                 <Blurr />
                 <ErrorBoundary>
-                    <SpansDisplay words={words}/>
+                    <TextScroller>
+                        <SpansDisplay words={words}/>
+                    </TextScroller>
                 </ErrorBoundary>
             </div>
         </div >
