@@ -1,22 +1,28 @@
 import React, {useEffect, useRef} from "react"
-import { useGetBreaklines, useUpdateBreaklines } from '../contexts/ContextAccessFunctions.ts'
-import { calculateShouldInsertBreakline } from "../helper-functions/HelperFunctions.tsx";
+import {useGetBreaklines, useUpdateBreaklines} from '../contexts/ContextAccessFunctions.ts'
+import {calculateShouldInsertBreakline} from "../helper-functions/HelperFunctions.tsx";
 
-const useGetBreaklineFlagForSpan = (currentSpanRef: React.MutableRefObject<HTMLSpanElement | null>, accumulatedSpansWidth: React.MutableRefObject<number>, spanId: number) => {
+const useGetBreaklineFlagForSpan = (
+    currentSpanRef: React.MutableRefObject<HTMLSpanElement | null>,
+    accumulatedSpansWidth: React.MutableRefObject<number>,
+    spanId: number) => {
+
     const breaklines: boolean[] = useGetBreaklines()
     const updateBreaklines = useUpdateBreaklines()
     const currentSpanIdRef = useRef(spanId)
-    
+
     useEffect(() => {
-        if (currentSpanRef.current && currentSpanRef.current.offsetWidth !== undefined){
-            try{
+        if (currentSpanRef.current && currentSpanRef.current.offsetWidth !== undefined) {
+            try {
                 updateBreaklines(([...prevBreaklines]) => {
                     return prevBreaklines.map((flag, index) => {
                         // keep the global span's breaklines array up to date when a span overflows
-                        return index === currentSpanIdRef.current ? calculateShouldInsertBreakline(currentSpanRef?.current?.offsetWidth || 0, accumulatedSpansWidth, currentSpanIdRef.current) : flag
+                        return index === currentSpanIdRef.current ?
+                            calculateShouldInsertBreakline(currentSpanRef?.current?.offsetWidth || 0, accumulatedSpansWidth, currentSpanIdRef.current)
+                            : flag
                     })
                 })
-            } catch(error){
+            } catch (error) {
                 console.error("Error during breakline update: ", error)
             }
         } else {

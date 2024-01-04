@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import "./styles/SpanStyle.css"
 import useGetBreaklineFlagForSpan from '../../../hooks/useGetBreakline'
 
@@ -8,14 +8,14 @@ interface SpanProps {
     id: number
 }
 
-export default function Span({ word, spanWidthSum, id }: SpanProps) {
+export default function Span({word, spanWidthSum, id}: SpanProps) {
     const spanRef = useRef(null)
     const breakline = useGetBreaklineFlagForSpan(spanRef, spanWidthSum, id)
 
     return (
         <span role={'span'}>
-            <span ref={spanRef} className='span-text' id="spans-text" >
-                {breakline ? <br data-test-id={'break'} /> : ""}
+            <span ref={spanRef} className='span-text' id="spans-text">
+                {breakline ? <br data-test-id={'break'}/> : ""}
                 {word}
             </span>
         </span>

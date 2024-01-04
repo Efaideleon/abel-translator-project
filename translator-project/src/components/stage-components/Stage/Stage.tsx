@@ -1,4 +1,4 @@
-import Blurr from "../Blurr/Blurr"
+import Blurr from "../Blur/Blurr"
 import VideoPlayer from "../VideoPlayer/VideoPlayer"
 import Prompter from "../Prompter/Prompter"
 import Footer from "../Footer/Footer"
